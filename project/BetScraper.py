@@ -64,6 +64,7 @@ def scraper():
 
         event_name = driver.find_elements("xpath", "//*[@id='14721451']/div/a")
         home_odds = driver.find_elements("xpath", "//*[@id='14721451']/div/div[1]/div[3]/div/div[1]")
+
         for event in basketball_events:
             events.append(event.get_attribute("innerHTML"))  # Adds episode to the anime array
         return events
