@@ -1,0 +1,18 @@
+{
+  "League":
+          [
+            {
+              "league_name": "insert name",
+              "has_events": "True or False",
+              "events":
+                      [
+                        {
+                          "event_name": "insert name",
+                          "event_time": "insert time",
+                          "home_odds": "insert odds",
+                          "away_odds": "insert odds"
+                        }
+                      ]
+            }
+          ]
+}
