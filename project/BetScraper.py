@@ -36,9 +36,7 @@ def scraper():
         # IF THE POPUP PERSISTS
         # popup = driver.find_element("xpath", "//*[@id='close-toast']").click()
 
-        # SECOND LOGIN POPUP
-
-        # LOCATING THE FORM
+        # LOCATING THE FORM IF IT INDEED POPS UP
         user_num = driver.find_element("xpath", "//*[@id='header-username']")
         user_pass = driver.find_element("xpath", "//*[@id='header-password']")
         login_button = driver.find_element("xpath", "//*[@id='__nuxt']/div/div/div[1]/header/div/div[2]/div/button[1]")
@@ -47,6 +45,14 @@ def scraper():
         user_num.send_keys(number)
         user_pass.send_keys(password)
         login_button.click()
+
+        # SECOND LOGIN POPUP
+        second_user = driver.find_element("xpath", "//*[@id='login-mobile']")
+        second_pass = driver.find_element("xpath", "//*[@id='login-password']")
+        second_login = driver.find_element("xpath", "/html/body/div[4]/div/div[2]/div/div/form/div[2]/button")
+        second_user.send_keys(number)
+        second_pass.send_keys(password)
+        second_login.click()
 
         # BASKETBALL_EVENTS
         basketball_tab = driver.find_element("xpath", "//*[@id='sport-games-list-scroller']/div[4]/button")
