@@ -67,6 +67,8 @@ def scraper():
             #if (basketball_events == "//span[contains(@class, 'overflow-hidden)][text()[contains(., 'NBA, USA')]]"):
             #else:
             events.append(event.get_attribute("innerHTML"))  # Parses the leagues and collects all data in text
+
+        NBA = driver.find_elements("xpath", "//div[contains(@id, 'sports-container')][.//div[contains(@class, 'rounded-lg')]")
         return events
 
     finally:
