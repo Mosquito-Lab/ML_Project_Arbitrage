@@ -57,14 +57,15 @@ def scraper():
         # BASKETBALL_EVENTS
         basketball_tab = driver.find_element("xpath", "//*[@id='sport-games-list-scroller']/div[4]/button")
         basketball_tab.click()  # Switches to the basketball tab
+        #
 
-        basketball_events = driver.find_elements("xpath",
-                                                 "//div[@class='rounded_lg'")  # Where the odds are
+        basketball_events = driver.find_elements("xpath", "//*[@id='sports-container']/div[5]")  # Where the odds are
 
-        #event_name = driver.find_elements("xpath", "//*[@id='14721451']/div/a")
-        #home_odds = driver.find_elements("xpath", "//*[@id='14721451']/div/div[1]/div[3]/div/div[1]")
         events = []
+        leagues = ['NBA, USA', 'NCAAB, USA', 'A1, Greece', 'NCAA Women, USA']
         for event in basketball_events:
+            #if (basketball_events == "//span[contains(@class, 'overflow-hidden)][text()[contains(., 'NBA, USA')]]"):
+            #else:
             events.append(event.get_attribute("innerHTML"))  # Parses the leagues and collects all data in text
         return events
 
