@@ -79,7 +79,7 @@ def scraper():
                 arbitrage = home_arb + away_arb
 
                 if (arbitrage < 100):
-                    arb_events = func.statement("SELECT event_name FROM events WHERE arbitrage < 100")
+                    arb_events = func.statement("SELECT * FROM events WHERE arbitrage < 100")
                     # Total profit gained from event
                     profit = (investment / arbitrage ) - investment
                     # Amount to bet on home odds
