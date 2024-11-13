@@ -11,8 +11,6 @@ def database():
                                  password="",
                                  database="")
     assert db.is_connected() is True
-
-    func = db.cursor()
     return db
 
 
@@ -62,26 +60,45 @@ def scraper():
         basketball_events = driver.find_elements("xpath", "//*[@id='sports-container']/div[5]")  # Where the odds are
 
         events = []
-        leagues = ['NBA, USA', 'NCAAB, USA', 'A1, Greece', 'NCAA Women, USA']
+        leagues = ['NBA, USA', 'NCAAB, USA', 'NCAA Women, USA']
+        event_name, event_time, home_odds, away_odds = [], [], [], []
         for event in basketball_events:
             #if (basketball_events == "//span[contains(@class, 'overflow-hidden)][text()[contains(., 'NBA, USA')]]"):
             #else:
             events.append(event.get_attribute("innerHTML"))  # Parses the leagues and collects all data in text
 
         NBA = driver.find_elements("xpath", "//div[contains(@id, 'sports-container')][.//div[contains(@class, 'rounded-lg')]")
-        return events
+        def arbitrage():
+            db = database()
+            func = db.cursor()
+
+            for x in db:
+                home_arb = (1 / home_odds[x]) * 100
+                away_arb = (1 / home_odds[x]) * 100
+                investment = 0
+                arbitrage = home_arb + away_arb
+
+                if (arbitrage < 100):
+                    arb_events = func.statement("SELECT event_name FROM events WHERE arbitrage < 100")
+                    # Total profit gained from event
+                    profit = (investment / arbitrage ) - investment
+                    # Amount to bet on home odds
+                    home_bet = (investment * home_arb) / arbitrage
+                    # Amount to bet on away odds
+                    away_bet = (investment * away_arb) / arbitrage
+
+
+            return arb_events
+
+        def auto_bet():
+            arb = arbitrage()
+            betslip = []
+
+            return betslip
 
     finally:
-        # driver.quit()
-        pass
-
-    def arbitrage():
-        pass
-
-    def auto_bet():
-        pass
-
-    return
+        driver.quit()
+        return auto_bet()
 
 
 if __name__ == '__main__':
