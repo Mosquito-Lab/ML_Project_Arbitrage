@@ -93,6 +93,7 @@ def scraper():
         def auto_bet():
             arb = arbitrage()
             betslip = []
+            balance = 0.0
 
             return betslip
 
